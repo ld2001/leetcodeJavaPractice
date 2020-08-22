@@ -23,7 +23,7 @@ public class BSTSearch {
             if(hasChildren(root)) {
                 return -1;
             } else {
-                return root.val > L && 
+                return 0;
             }
         }
 
