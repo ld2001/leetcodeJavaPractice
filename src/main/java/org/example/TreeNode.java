@@ -11,4 +11,11 @@ public class TreeNode {
         this.left = left;
         this.right = right;
     }
+    public boolean hasChildren() {
+        if(left == null && right == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

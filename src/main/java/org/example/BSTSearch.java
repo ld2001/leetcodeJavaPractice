@@ -1,6 +1,6 @@
 package org.example;
 
-import sun.reflect.generics.tree.Tree;
+import java.util.*;
 
 public class BSTSearch {
 
@@ -13,7 +13,34 @@ public class BSTSearch {
     }
 
     private static boolean hasChildren (TreeNode node) {
-        return true;
+        if(node.left == null && node.right == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private static int returnValInRange(TreeNode root, int LowerBound, int UpperBound) {
+        if(root.val >= LowerBound && root.val <= UpperBound) {
+            return root.val;
+        } else {
+            return 0;
+        }
+    }
+
+    private static int returnSumWithChildren (TreeNode root, int LowerBound, int UpperBound) {
+        int totalSumCounter = 0;
+
+        if(root.left != null) {
+            totalSumCounter += rangeSumBST(root.left,LowerBound,UpperBound);
+        }
+        if(root.right != null) {
+            totalSumCounter += rangeSumBST(root.right,LowerBound,UpperBound);
+        }
+
+        totalSumCounter += returnValInRange(root,LowerBound,UpperBound);
+
+        return totalSumCounter;
     }
 
     public static int rangeSumBST (TreeNode root, int L, int R) {
@@ -21,9 +48,9 @@ public class BSTSearch {
             return 0;
         } else {
             if(hasChildren(root)) {
-                return -1;
+                return returnSumWithChildren(root,L,R);
             } else {
-                return 0;
+                return returnValInRange(root,L,R);
             }
         }
 

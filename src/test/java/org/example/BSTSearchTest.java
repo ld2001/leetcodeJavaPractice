@@ -1,8 +1,8 @@
 package org.example;
 
 import org.junit.*;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
 
 public class BSTSearchTest {
 
@@ -20,4 +20,34 @@ public class BSTSearchTest {
     }
 
 
+    @Test
+    public void test3NodesEquals5 () {
+        TreeNode L1 = new TreeNode(2);
+        L1.left = new TreeNode(6);
+        L1.left = new TreeNode(3);
+
+        assertThat(BSTSearch.rangeSumBST(L1,0,4),equalTo(5));
+    }
+
+
+    @Test
+    public void test3NodesDegenerate () {
+        TreeNode L1 = new TreeNode(2);
+        L1.left = new TreeNode(6);
+        L1.left.left = new TreeNode(3);
+
+        assertThat(BSTSearch.rangeSumBST(L1,0,4),equalTo(5));
+    }
+
+    @Test
+    public void test3NodesDegenerateNegative () {
+        TreeNode L1 = new TreeNode(2);
+        L1.left = new TreeNode(-3);
+        L1.left.left = new TreeNode(3);
+
+        assertThat(BSTSearch.rangeSumBST(L1,0,4),equalTo(5));
+    }
+
 }
+
+
